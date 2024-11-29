@@ -9,16 +9,23 @@ const foodsStore = createSlice({
   initialState: {
     // 商品列表
     foodsList: [],
+    // 菜单激活下标值
+    activeIndex: 0,
   },
   reducers: {
+    // 更改商品列表
     setFoodsList(state, action) {
       state.foodsList = action.payload
     },
+    // 更改activeIndex
+    changeActiveIndex(state, action) {
+      state.activeIndex = action.payload
+    }
   },
 })
 
 // 异步获取部分
-const { setFoodsList } = foodsStore.actions
+const { setFoodsList, changeActiveIndex } = foodsStore.actions
 const fetchFoodsList = () => {
   return async (dispatch) => {
     // 编写异步逻辑
@@ -30,6 +37,7 @@ const fetchFoodsList = () => {
 
 export {
   fetchFoodsList,
+  changeActiveIndex,
 }
 
 const foodsReducer = foodsStore.reducer
