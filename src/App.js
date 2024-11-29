@@ -4,6 +4,9 @@ import Cart from './components/Cart'
 import FoodsCategory from './components/FoodsCategory'
 
 import './App.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchFoodsList } from './store/modules/takeaway'
+import { useEffect } from 'react'
 
 const foodsList = [
   {
@@ -63,6 +66,16 @@ const foodsList = [
 ]
 
 const App = () => {
+  // 触发action执行
+  // 1. useDispatch -> dispatch 2. actionCreators导入进来 3. useEffect
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchFoodsList())
+  }, [dispatch])
+
+  // 获取foodsList渲染数据列表
+  // 1. useSelector
+  const { foodsList } = useSelector(state => state.foods)
 
   return (
     <div className="home">
